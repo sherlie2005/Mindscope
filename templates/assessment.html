@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Assessment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+:root {
+    --primary: #7209b7;
+    --secondary: #3a0ca3;
+    --accent: #f72585;
+    --text: #2b2d42;
+    --light: #f8f7ff;
+    --gradient-1: #4cc9f0;
+    --gradient-2: #7209b7;
+    --card-bg: #ffffff;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.split-container {
+    display: flex;
+    min-height: calc(100vh - 2rem);
+    margin: 1rem;
+    gap: 2rem;
+}
+
+.assessment-form, .results-section {
+    flex: 1;
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-section {
+    display: none;
+}
+
+h1 {
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.5rem;
+}
+
+.form-label {
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(114, 9, 183, 0.15);
+}
+
+.btn-submit {
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.exit-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.exit-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.result-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    background: white;
+    margin-top: 2rem;
+}
+
+.percentage-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+}
+
+.classification {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.message {
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+    .split-container {
+        flex-direction: column;
+    }
+}
+</style>
+<body>
+    <a href="/" class="exit-btn">✕</a>
+    
+    <div class="split-container">
+        <div class="assessment-form">
+            <h1>Depression Assessment</h1>
+            <form id="depressionForm">
+                <div class="form-group">
+                    <label class="form-label">Gender</label>
+                    <select class="form-select" name="Gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Age</label>
+                    <input type="number" class="form-control" name="Age" min="1" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Academic Pressure(0-5)</label>
+                    <input type="number" class="form-control" name="pressure" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Study Satisfaction(0-5)</label>
+                    <input type="number" class="form-control" name="satisfaction" min="0" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Sleep Duration (hours)</label>
+                    <input type="number" class="form-control" name="Sleep Duration" min="0" max="24" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Dietary Habits</label>
+                    <select class="form-select" name="Dietary Habits" required>
+                        <option value="">Select Type</option>
+                        <option value="Good">Healthy</option>
+                        <option value="Average">Moderate</option>
+                        <option value="Poor">Unhealthy</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Have you ever had suicidal thoughts?</label>
+                    <select class="form-select" name="Have you ever had suicidal thoughts ?" required>
+                        <option value="">Select Answer</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Study Hours (per day)</label>
+                    <input type="number" class="form-control" name="Study Hours" min="0" max="24" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Financial Stress(0-5)</label>
+                    <input type="number" class="form-control" name="stress" min="0" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Family History of Mental Illness</label>
+                    <select class="form-select" name="Family History of Mental Illness" required>
+                        <option value="">Select Answer</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-submit w-100">Submit Assessment</button>
+            </form>
+        </div>
+
+        <div class="results-section">
+            <h1>Assessment Results</h1>
+            <div class="result-card">
+                <div class="percentage-circle">
+                    <span id="depressionPercentage">0%</span>
+                </div>
+                <div class="classification" id="depressionClass"></div>
+                <div class="message" id="depressionMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#depressionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {};
+                $(this).serializeArray().forEach(item => {
+                    formData[item.name] = item.value;
+                });
+
+                // Calculate depression risk (This is a simplified example - replace with your actual calculation logic)
+                let riskScore = 0;
+                
+                // Add to risk score based on various factors
+                if (formData['Academic Pressure'] === 'High') riskScore += 20;
+                if (formData['Study Satisfaction'] === 'Low') riskScore += 15;
+                if (formData['Sleep Duration'] < 6) riskScore += 15;
+                if (formData['Dietary Habits'] === 'Poor') riskScore += 10;
+                if (formData['Have you ever had suicidal thoughts ?'] === 'Yes') riskScore += 25;
+                if (formData['Financial Stress'] === 'High') riskScore += 15;
+                if (formData['Family History of Mental Illness'] === 'Yes') riskScore += 10;
+
+                // Calculate percentage (normalize to 0-100)
+                const percentage = Math.min(100, riskScore);
+
+                // Show results section
+                $('.results-section').fadeIn();
+                
+                // Update percentage display with animation
+                $({ value: 0 }).animate({ value: percentage }, {
+                    duration: 1000,
+                    step: function() {
+                        $('#depressionPercentage').text(Math.round(this.value) + '%');
+                    }
+                });
+
+                // Determine classification and message
+                let classification, message;
+                if (percentage < 25) {
+                    classification = "Minimal Depression Risk";
+                    message = "Your responses indicate minimal risk of depression. Keep maintaining good mental health practices like regular exercise, healthy sleep patterns, and social connections.";
+                } else if (percentage < 50) {
+                    classification = "Mild Depression Risk";
+                    message = "Your responses suggest a mild risk of depression. Consider talking to friends or family about your feelings, and try to incorporate more stress-reducing activities into your routine.";
+                } else if (percentage < 75) {
+                    classification = "Moderate Depression Risk";
+                    message = "Your responses indicate moderate risk of depression. We recommend consulting with a mental health professional to discuss your feelings and develop appropriate coping strategies.";
+                } else {
+                    classification = "High Depression Risk";
+                    message = "Your responses suggest a significant risk of depression. We strongly recommend seeking professional help soon. Remember, depression is treatable and many people find relief with proper support.";
+                }
+
+                // Update classification and message with fade animation
+                $('#depressionClass').fadeOut(200, function() {
+                    $(this).text(classification).fadeIn(200);
+                });
+                $('#depressionMessage').fadeOut(200, function() {
+                    $(this).text(message).fadeIn(200);
+                });
+
+                // Scroll to results on mobile
+                if (window.innerWidth < 992) {
+                    $('.results-section')[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

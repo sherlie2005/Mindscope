@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindScope - Explore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #7209b7;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --text: #2b2d42;
+            --light: #f8f7ff;
+            --hover-bg: #5a2d8c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .explore-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .explore-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .explore-header h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .explore-header p {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .explore-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .option-btn {
+            padding: 1.5rem 3rem;
+            background: var(--accent);
+            color: white;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            text-decoration: none;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            margin: 0.5rem;
+        }
+
+        .option-btn:hover {
+            background: var(--hover-bg);
+            transform: translateY(-8px);
+        }
+
+        .option-btn i {
+            margin-right: 12px;
+        }
+
+        .explore-footer {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .explore-footer p {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .explore-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .explore-footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="explore-container">
+        <div class="explore-header">
+            <h2>Explore the Dataset and Models</h2>
+            <p>Welcome to the exploration hub! Dive deeper into the dataset's characteristics, compare the performance of different models, and justify the model choice based on splits and metrics. Choose an option below to start your exploration journey!</p>
+        </div>
+
+        <div class="explore-options">
+            <a href="/dataset" class="option-btn">
+                <i class="fas fa-chart-bar"></i> Data Visualization
+            </a>
+            <a href="/selection" class="option-btn">
+                <i class="fas fa-cogs"></i> Model Selection
+            </a>
+            <a href="/justification" class="option-btn">
+                <i class="fas fa-balance-scale"></i> Model Justification
+            </a>
+        </div>
+
+        <div class="explore-footer">
+            <p>Need more information? Feel free to <a href="/contact.html">Contact Us</a>.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+</html>

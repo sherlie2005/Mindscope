@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+
+</head>
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #7209b7;
+    --secondary: #3a0ca3;
+    --accent: #f72585;
+    --text: #2b2d42;
+    --light: #f8f7ff;
+    --gradient-1: #4cc9f0;
+    --gradient-2: #7209b7;
+    --card-bg: #ffffff;
+    --footer-bg: #1b1b3a;
+}
+
+body {
+    background: linear-gradient(135deg, var(--light), #e6e6fa);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Styles */
+h1, h2, h3 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+}
+
+/* Card Styles */
+.bg-white {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-white:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Metric Cards */
+.border.rounded-lg {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.border.rounded-lg:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats Grid */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Chart Container */
+.w-full[style*="min-height: 600px"] {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Important Notes Section */
+.bg-blue-50 {
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.05), rgba(58, 12, 163, 0.05));
+    border-radius: 12px;
+    border: 1px solid rgba(114, 9, 183, 0.1);
+    padding: 1.5rem;
+}
+
+.text-blue-800 {
+    color: var(--secondary);
+}
+
+.text-blue-700 {
+    color: var(--primary);
+}
+
+/* Button Styles */
+.inline-flex.items-center {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-blue-600 {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+}
+
+.bg-blue-600:hover {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+}
+
+.border-gray-300 {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: transparent;
+}
+
+.border-gray-300:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+}
+
+/* Text Colors */
+.text-gray-800 {
+    color: var(--text);
+}
+
+.text-gray-600 {
+    color: rgba(43, 45, 66, 0.8);
+}
+
+.text-gray-700 {
+    color: rgba(43, 45, 66, 0.9);
+}
+
+/* Prose Styles */
+.prose {
+    max-width: 65ch;
+    line-height: 1.8;
+}
+
+.prose p {
+    margin-bottom: 1.5rem;
+}
+
+.whitespace-pre-line {
+    white-space: pre-line;
+}
+
+/* List Styles */
+.list-disc {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.list-inside {
+    padding-left: 1rem;
+}
+
+.space-y-1 > * + * {
+    margin-top: 0.25rem;
+}
+
+/* Padding and Margins */
+.p-4 {
+    padding: 1rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inline-flex.items-center {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+</style>
+<body>
+    <div class="container mx-auto px-4 py-8">
+    <!-- Header Section -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Model Comparison and Justification</h1>
+        <p class="text-gray-600">Comprehensive analysis of model performance across different data splits</p>
+    </div>
+
+    <!-- Model Comparison Visualization -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold text-gray-800">Model Performance Comparison</h2>
+            <p class="text-gray-600">Performance metrics across different test split ratios</p>
+        </div>
+        
+        <!-- Plotly Chart -->
+        <div class="w-full" style="min-height: 600px;">
+            {{ plot | safe }}
+        </div>
+        
+        <!-- Chart Legend -->
+        <div class="mt-4 p-4 bg-gray-50 rounded-md">
+            <h3 class="text-sm font-medium text-gray-700 mb-2">How to read this chart:</h3>
+            <ul class="text-sm text-gray-600 list-disc list-inside">
+                <li>Each bar represents a model's F1 score at different split ratios</li>
+                <li>Higher bars indicate better model performance</li>
+                <li>Click on legend items to show/hide specific models</li>
+                <li>Hover over bars to see exact values</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Best Model Details -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Best Performing Model Details</h2>
+        
+        <!-- Model Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Model Name -->
+            <div class="bg-gray-50 p-4 rounded-md">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Model Name</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ best_model.model }}</p>
+            </div>
+            
+            <!-- Optimal Split -->
+            <div class="bg-gray-50 p-4 rounded-md">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Optimal Split Ratio</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.1f"|format(best_model.split * 100) }}%</p>
+            </div>
+            
+            <!-- Average F1 Score -->
+            <div class="bg-gray-50 p-4 rounded-md">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Average F1 Score</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.3f"|format(best_model.avg_f1) }}</p>
+            </div>
+        </div>
+
+        <!-- Detailed Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- F1 Score -->
+            <div class="border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">F1 Score</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.3f"|format(best_model.metrics.f1) }}</p>
+            </div>
+            
+            <!-- Accuracy -->
+            <div class="border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Accuracy</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.3f"|format(best_model.metrics.accuracy) }}</p>
+            </div>
+            
+            <!-- Precision -->
+            <div class="border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Precision</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.3f"|format(best_model.metrics.precision) }}</p>
+            </div>
+            
+            <!-- Recall -->
+            <div class="border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Recall</h3>
+                <p class="text-lg font-semibold text-gray-900">{{ "%.3f"|format(best_model.metrics.recall) }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Justification -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Model Selection Justification</h2>
+        
+        <!-- Explanation Text -->
+        <div class="prose max-w-none">
+            <div class="whitespace-pre-line text-gray-700">
+                {{ explanation }}
+            </div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="mt-6 p-4 bg-blue-50 rounded-md">
+            <h3 class="text-sm font-medium text-blue-800 mb-2">Important Notes:</h3>
+            <ul class="text-sm text-blue-700 list-disc list-inside space-y-1">
+                <li>Model performance may vary with different random seeds</li>
+                <li>Results are averaged across multiple iterations for stability</li>
+                <li>The optimal split ratio balances training data size and validation requirements</li>
+                <li>Consider both metric scores and model interpretability for your use case</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-8 flex justify-center space-x-4">
+        <a href="{{ url_for('model_selection') }}" 
+           class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Back to Model Selection
+        </a>
+        <a href="{{ url_for('dataset_visualization') }}" 
+           class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            View Dataset Analysis
+        </a>
+    </div>
+</div>
+
+<!-- JavaScript for Enhanced Interactivity -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effects to metric cards
+        document.querySelectorAll('.border.rounded-lg').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-md', 'transform', 'scale-105', 'transition-all');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-md', 'transform', 'scale-105', 'transition-all');
+            });
+        });
+    });
+</script>
+</body>
+</html>

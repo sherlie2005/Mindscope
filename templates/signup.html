@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindScope - Create Account</title>
+    <style>
+        :root {
+            --primary: #7209b7;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --text: #2b2d42;
+            --light: #f8f7ff;
+            --error: #dc2626;
+            --success: #059669;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-width: 95%;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .checkbox-group {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-footer a:hover {
+            color: var(--primary);
+        }
+
+        .error-message {
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #ecfdf5;
+            border: 1px solid #d1fae5;
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .password-strength {
+            height: 5px;
+            background: #e2e8f0;
+            margin-top: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--error);
+            border-radius: 5px;
+            transition: width 0.3s, background 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Start your mental health journey</p>
+        </div>
+
+        <form id="signup-form">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number (Optional)</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890">
+            </div>
+
+            <div class="input-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+            </div>
+
+            <div class="input-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="non-binary">Non-binary</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not">Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="password" name="password" required>
+                    <button type="button" id="toggle-password" class="password-toggle" aria-label="Toggle password visibility">👁️</button>
+                </div>
+                <div class="password-strength">
+                    <div id="password-strength-bar" class="password-strength-bar"></div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <!-- Security Questions -->
+            <div class="input-group">
+                <label for="securityQuestion1">Security Question 1</label>
+                <input type="text" id="securityQuestion1" name="securityQuestion1" required>
+            </div>
+
+            <div class="input-group">
+                <label for="securityAnswer1">Answer</label>
+                <input type="text" id="securityAnswer1" name="securityAnswer1" required>
+            </div>
+
+            <div class="input-group">
+                <label for="securityQuestion2">Security Question 2</label>
+                <input type="text" id="securityQuestion2" name="securityQuestion2" required>
+            </div>
+
+            <div class="input-group">
+                <label for="securityAnswer2">Answer</label>
+                <input type="text" id="securityAnswer2" name="securityAnswer2" required>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+            </div>
+
+            <div id="success-message" class="success-message">
+                Account created successfully! Please check your email to verify your account.
+            </div>
+
+            <div id="error-message" class="error-message"></div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+                <span id="submit-text">Create Account</span>
+                <span id="submit-spinner" style="display: none;">&#8635;</span>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p><a href="/login">← Back to Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('signup-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitSpinner = document.getElementById('submit-spinner');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        const passwordInput = document.getElementById('password');
+        const passwordStrengthBar = document.getElementById('password-strength-bar');
+        const togglePassword = document.getElementById('toggle-password');
+
+        function validatePassword(password) {
+            if (password.length < 8) {
+                return 'Password must be at least 8 characters long';
+            }
+            if (!/[a-z]/.test(password)) {
+                return 'Password must contain lowercase letters';
+            }
+            if (!/[A-Z]/.test(password)) {
+                return 'Password must contain uppercase letters';
+            }
+            if (!/[0-9]/.test(password)) {
+                return 'Password must contain numbers';
+            }
+            if (!/[^a-zA-Z0-9]/.test(password)) {
+                return 'Password must contain special characters';
+            }
+            return null;
+        }
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            return strength;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            submitBtn.disabled = false;
+            submitText.style.display = 'inline-block';
+            submitSpinner.style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+            submitBtn.disabled = true;
+            form.reset();
+        }
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            const strength = calculatePasswordStrength(password);
+
+            if (strength < 2) {
+                passwordStrengthBar.style.backgroundColor = 'var(--error)';
+            } else if (strength < 4) {
+                passwordStrengthBar.style.backgroundColor = 'orange';
+            } else {
+                passwordStrengthBar.style.backgroundColor = 'var(--success)';
+            }
+
+            passwordStrengthBar.style.width = `${strength * 25}%`;
+        });
+
+        togglePassword.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = '👁️';
+            }
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitText.style.display = 'none';
+            submitSpinner.style.display = 'inline-block';
+
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validate passwords match
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            const passwordError = validatePassword(password);
+            if (passwordError) {
+                showError(passwordError);
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError("Passwords do not match!");
+                return;
+            }
+
+            // Validate date of birth
+            const dobInput = document.getElementById('dateOfBirth');
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            
+            if (dob > today) {
+                showError("Date of birth cannot be in the future");
+                return;
+            }
+
+            // Create form data object
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value || null,
+                dateOfBirth: dobInput.value,
+                gender: document.getElementById('gender').value,
+                password: password,
+                security_questions: [
+                    {
+                        question: document.getElementById('securityQuestion1').value,
+                        answer: document.getElementById('securityAnswer1').value
+                    },
+                    {
+                        question: document.getElementById('securityQuestion2').value,
+                        answer: document.getElementById('securityAnswer2').value
+                    }
+                ]
+            };
+
+            try {
+                const response = await fetch('/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showSuccess('Account created successfully! Please check your email to verify your account.');
+                } else {
+                    showError(data.error || 'Error creating account');
+                }
+            } catch (error) {
+                showError('An error occurred. Please try again later.');
+            } finally {
+                submitBtn.disabled = false;
+                submitText.style.display = 'inline-block';
+                submitSpinner.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
